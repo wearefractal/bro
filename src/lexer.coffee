@@ -570,12 +570,8 @@ COFFEE_ALIAS_MAP =
   on   : 'true'
   off  : 'false'
   
-  aint: '!='
   nah  : 'false'
-  we   : 'this'
-  be   : '=='
   chill: 'true'
-  swaggin: 'true'
   sick : 'true'
   gnar : 'true'
   lame : 'false'

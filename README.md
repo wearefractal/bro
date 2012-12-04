@@ -3,7 +3,7 @@ BroScript is a little language that can bro down.
 ```coffee-script
 party = sick
 
-isPartyTime = (party) -> (if party be chill then gnar else not swaggin)
+isPartyTime = (party) -> (if party is chill then gnar else lame)
 ```
 
 Just ```sudo npm install bro -g```
