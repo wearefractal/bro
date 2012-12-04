@@ -11,7 +11,7 @@ fs           = require 'fs'
 path         = require 'path'
 helpers      = require './helpers'
 optparse     = require './optparse'
-CoffeeScript = require './coffee-script'
+CoffeeScript = require './bro-script'
 
 existsSync   = fs.existsSync or path.existsSync
 

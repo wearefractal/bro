@@ -1,4 +1,4 @@
-# **Underscore.coffee
+# **Underscore.bro
 # (c) 2011 Jeremy Ashkenas, DocumentCloud Inc.**
 # Underscore is freely distributable under the terms of the
 # [MIT license](http://en.wikipedia.org/wiki/MIT_License).

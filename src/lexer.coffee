@@ -569,6 +569,16 @@ COFFEE_ALIAS_MAP =
   no   : 'false'
   on   : 'true'
   off  : 'false'
+  
+  aint: '!='
+  nah  : 'false'
+  we   : 'this'
+  be   : '=='
+  chill: 'true'
+  swaggin: 'true'
+  sick : 'true'
+  gnar : 'true'
+  lame : 'false'
 
 COFFEE_ALIASES  = (key for key of COFFEE_ALIAS_MAP)
 COFFEE_KEYWORDS = COFFEE_KEYWORDS.concat COFFEE_ALIASES

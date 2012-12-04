@@ -2,14 +2,14 @@
 # and evaluates it. Good for simple tests, or poking around the **Node.js** API.
 # Using it looks like this:
 #
-#     coffee> console.log "#{num} bottles of beer" for num in [99..1]
+#    .bro> console.log "#{num} bottles of beer" for num in [99..1]
 
 # Start by opening up `stdin` and `stdout`.
 stdin = process.openStdin()
 stdout = process.stdout
 
-# Require the **coffee-script** module to get access to the compiler.
-CoffeeScript = require './coffee-script'
+# Require the **bro-script** module to get access to the compiler.
+CoffeeScript = require './bro-script'
 readline     = require 'readline'
 {inspect}    = require 'util'
 {Script}     = require 'vm'
@@ -18,7 +18,7 @@ Module       = require 'module'
 # REPL Setup
 
 # Config
-REPL_PROMPT = 'coffee> '
+REPL_PROMPT = 'bro> '
 REPL_PROMPT_MULTILINE = '------> '
 REPL_PROMPT_CONTINUATION = '......> '
 enableColours = no

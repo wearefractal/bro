@@ -1,4 +1,4 @@
-# `nodes.coffee` contains all of the node classes for the syntax tree. Most
+# `nodes.bro` contains all of the node classes for the syntax tree. Most
 # nodes are created as the result of actions in the [grammar](grammar.html),
 # but some are created by other nodes as a method of code generation. To convert
 # the syntax tree into a string of JavaScript code, call `compile()` on the root.
@@ -106,7 +106,7 @@ exports.Base = class Base
     null
 
   # `toString` representation of the node, for inspecting the parse tree.
-  # This is what `coffee --nodes` prints out.
+  # This is what .bro --nodes` prints out.
   toString: (idt = '', name = @constructor.name) ->
     tree = '\n' + idt + name
     tree += '?' if @soak
@@ -1511,7 +1511,7 @@ exports.Op = class Op extends Base
   # Mimic Python's chained comparisons when multiple comparison operators are
   # used sequentially. For example:
   #
-  #     bin/coffee -e 'console.log 50 < 65 > 10'
+  #     bin.bro -e 'console.log 50 < 65 > 10'
   #     true
   compileChain: (o) ->
     [@first.second, shared] = @first.second.cache o

@@ -1,4 +1,4 @@
-# The `coffee` utility. Handles command-line compilation of CoffeeScript
+# The .bro` utility. Handles command-line compilation of CoffeeScript
 # into various forms: saved into `.js` files or printed to stdout, piped to
 # [JavaScript Lint](http://javascriptlint.com/) or recompiled every time the source is
 # saved, printed as a token stream or as the syntax tree, or launch an
@@ -9,7 +9,7 @@ fs             = require 'fs'
 path           = require 'path'
 helpers        = require './helpers'
 optparse       = require './optparse'
-CoffeeScript   = require './coffee-script'
+CoffeeScript   = require './bro-script'
 {spawn, exec}  = require 'child_process'
 {EventEmitter} = require 'events'
 
@@ -23,14 +23,14 @@ printWarn = (line) -> process.stderr.write line + '\n'
 
 hidden = (file) -> /^\.|~$/.test file
 
-# The help banner that is printed when `coffee` is called without arguments.
+# The help banner that is printed when .bro` is called without arguments.
 BANNER = '''
-  Usage: coffee [options] path/to/script.coffee -- [args]
+  Usage:.bro [options] path/to/script.bro -- [args]
 
-  If called without options, `coffee` will run your script.
+  If called without options, `bro` will run your script.
 '''
 
-# The list of all the valid option flags that `coffee` knows how to handle.
+# The list of all the valid option flags that .bro` knows how to handle.
 SWITCHES = [
   ['-b', '--bare',            'compile without a top-level function wrapper']
   ['-c', '--compile',         'compile to JavaScript and save as .js files']
@@ -58,7 +58,7 @@ notSources   = {}
 watchers     = {}
 optionParser = null
 
-# Run `coffee` by parsing passed options and determining what action to take.
+# Run .bro` by parsing passed options and determining what action to take.
 # Many flags cause us to divert before compiling anything. Flags passed after
 # `--` will be passed verbatim to your script as arguments in `process.argv`
 exports.run = ->
@@ -75,20 +75,20 @@ exports.run = ->
   return require './repl'                unless sources.length
   literals = if opts.run then sources.splice 1 else []
   process.argv = process.argv[0..1].concat literals
-  process.argv[0] = 'coffee'
+  process.argv[0] = 'bro'
   process.execPath = require.main.filename
   for source in sources
     compilePath source, yes, path.normalize source
 
 # Compile a path, which could be a script or a directory. If a directory
-# is passed, recursively compile all '.coffee' extension source files in it
+# is passed, recursively compile all '.bro' extension source files in it
 # and all subdirectories.
 compilePath = (source, topLevel, base) ->
   fs.stat source, (err, stats) ->
     throw err if err and err.code isnt 'ENOENT'
     if err?.code is 'ENOENT'
-      if topLevel and source[-7..] isnt '.coffee'
-        source = sources[sources.indexOf(source)] = "#{source}.coffee"
+      if topLevel and source[-7..] isnt '.bro'
+        source = sources[sources.indexOf(source)] = "#{source}.bro"
         return compilePath source, topLevel, base
       if topLevel
         console.error "File not found: #{source}"
@@ -105,7 +105,7 @@ compilePath = (source, topLevel, base) ->
         sourceCode[index..index] = files.map -> null
         files.forEach (file) ->
           compilePath (path.join source, file), no, base
-    else if topLevel or path.extname(source) is '.coffee'
+    else if topLevel or path.extname(source) is '.bro'
       watch source, base if opts.watch
       fs.readFile source, (err, code) ->
         throw err if err and err.code isnt 'ENOENT'

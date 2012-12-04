@@ -1,7 +1,7 @@
 fs            = require 'fs'
 path          = require 'path'
-{extend}      = require './lib/coffee-script/helpers'
-CoffeeScript  = require './lib/coffee-script'
+{extend}      = require './lib/bro-script/helpers'
+CoffeeScript  = require './lib/bro-script'
 {spawn, exec} = require 'child_process'
 
 # ANSI Terminal Colors.
@@ -20,7 +20,7 @@ if enableColors
 header = """
   /**
    * CoffeeScript Compiler v#{CoffeeScript.VERSION}
-   * http://coffeescript.org
+   * http:/.broscript.org
    *
    * Copyright 2011, Jeremy Ashkenas
    * Released under the MIT License
@@ -28,13 +28,13 @@ header = """
 """
 
 sources = [
-  'coffee-script', 'grammar', 'helpers'
+  'bro-script', 'grammar', 'helpers'
   'lexer', 'nodes', 'rewriter', 'scope'
-].map (filename) -> "src/#{filename}.coffee"
+].map (filename) -> "src/#{filename}.bro"
 
-# Run a CoffeeScript through our node/coffee interpreter.
+# Run a CoffeeScript through our node.bro interpreter.
 run = (args, cb) ->
-  proc =         spawn 'node', ['bin/coffee'].concat(args)
+  proc =         spawn 'node', ['bin/bro'].concat(args)
   proc.stderr.on 'data', (buffer) -> console.log buffer.toString()
   proc.on        'exit', (status) ->
     process.exit(1) if status != 0
@@ -48,19 +48,18 @@ option '-p', '--prefix [DIR]', 'set the installation prefix for `cake install`'
 
 task 'install', 'install CoffeeScript into /usr/local (or --prefix)', (options) ->
   base = options.prefix or '/usr/local'
-  lib  = "#{base}/lib/coffee-script"
+  lib  = "#{base}/lib/bro-script"
   bin  = "#{base}/bin"
-  node = "~/.node_libraries/coffee-script"
+  node = "~/.node_libraries/bro-script"
   console.log   "Installing CoffeeScript to #{lib}"
   console.log   "Linking to #{node}"
-  console.log   "Linking 'coffee' to #{bin}/coffee"
+  console.log   "Linking bro' to #{bin}/bro"
   exec([
     "mkdir -p #{lib} #{bin}"
     "cp -rf bin lib LICENSE README package.json src #{lib}"
-    "ln -sfn #{lib}/bin/coffee #{bin}/coffee"
-    "ln -sfn #{lib}/bin/cake #{bin}/cake"
+    "ln -sfn #{lib}/bin/bro #{bin}/bro"
     "mkdir -p ~/.node_libraries"
-    "ln -sfn #{lib}/lib/coffee-script #{node}"
+    "ln -sfn #{lib}/lib/bro-script #{node}"
   ].join(' && '), (err, stdout, stderr) ->
     if err then console.log stderr.trim() else log 'done', green
   )
@@ -69,13 +68,13 @@ task 'install', 'install CoffeeScript into /usr/local (or --prefix)', (options) 
 task 'build', 'build the CoffeeScript language from source', build = (cb) ->
   files = fs.readdirSync 'src'
   files = ('src/' + file for file in files when file.match(/\.coffee$/))
-  run ['-c', '-o', 'lib/coffee-script'].concat(files), cb
+  run ['-c', '-o', 'lib/bro-script'].concat(files), cb
 
 
 task 'build:full', 'rebuild the source twice, and run the tests', ->
   build ->
     build ->
-      csPath = './lib/coffee-script'
+      csPath = './lib/bro-script'
       delete require.cache[require.resolve csPath]
       unless runTests require csPath
         process.exit 1
@@ -84,23 +83,23 @@ task 'build:full', 'rebuild the source twice, and run the tests', ->
 task 'build:parser', 'rebuild the Jison parser (run build first)', ->
   extend global, require('util')
   require 'jison'
-  parser = require('./lib/coffee-script/grammar').parser
-  fs.writeFile 'lib/coffee-script/parser.js', parser.generate()
+  parser = require('./lib/bro-script/grammar').parser
+  fs.writeFile 'lib/bro-script/parser.js', parser.generate()
 
 
 task 'build:ultraviolet', 'build and install the Ultraviolet syntax highlighter', ->
-  exec 'plist2syntax ../coffee-script-tmbundle/Syntaxes/CoffeeScript.tmLanguage', (err) ->
+  exec 'plist2syntax ../bro-script-tmbundle/Syntaxes/CoffeeScript.tmLanguage', (err) ->
     throw err if err
-    exec 'sudo mv coffeescript.yaml /usr/local/lib/ruby/gems/1.8/gems/ultraviolet-0.10.2/syntax/coffeescript.syntax'
+    exec 'sudo mv.broscript.yaml /usr/local/lib/ruby/gems/1.8/gems/ultraviolet-0.10.2/syntax.broscript.syntax'
 
 
 task 'build:browser', 'rebuild the merged script for inclusion in the browser', ->
   code = ''
-  for name in ['helpers', 'rewriter', 'lexer', 'parser', 'scope', 'nodes', 'coffee-script', 'browser']
+  for name in ['helpers', 'rewriter', 'lexer', 'parser', 'scope', 'nodes', 'bro-script', 'browser']
     code += """
       require['./#{name}'] = new function() {
         var exports = this;
-        #{fs.readFileSync "lib/coffee-script/#{name}.js"}
+        #{fs.readFileSync "lib/bro-script/#{name}.js"}
       };
     """
   code = """
@@ -108,7 +107,7 @@ task 'build:browser', 'rebuild the merged script for inclusion in the browser', 
       var CoffeeScript = function() {
         function require(path){ return require[path]; }
         #{code}
-        return require['./coffee-script'];
+        return require['./bro-script'];
       }();
 
       if (typeof define === 'function' && define.amd) {
@@ -120,7 +119,7 @@ task 'build:browser', 'rebuild the merged script for inclusion in the browser', 
   """
   unless process.env.MINIFY is 'false'
     {code} = require('uglify-js').minify code, fromString: true
-  fs.writeFileSync 'extras/coffee-script.js', header + '\n' + code
+  fs.writeFileSync 'extras/bro-script.js', header + '\n' + code
   console.log "built ... running browser tests:"
   invoke 'test:browser'
 
@@ -131,16 +130,16 @@ task 'doc:site', 'watch and continually rebuild the documentation for the websit
 
 
 task 'doc:source', 'rebuild the internal documentation', ->
-  exec 'docco src/*.coffee && cp -rf docs documentation && rm -r docs', (err) ->
+  exec 'docco src/*.bro && cp -rf docs documentation && rm -r docs', (err) ->
     throw err if err
 
 
-task 'doc:underscore', 'rebuild the Underscore.coffee documentation page', ->
-  exec 'docco examples/underscore.coffee && cp -rf docs documentation && rm -r docs', (err) ->
+task 'doc:underscore', 'rebuild the Underscore.bro documentation page', ->
+  exec 'docco examples/underscore.bro && cp -rf docs documentation && rm -r docs', (err) ->
     throw err if err
 
 task 'bench', 'quick benchmark of compilation time', ->
-  {Rewriter} = require './lib/coffee-script/rewriter'
+  {Rewriter} = require './lib/bro-script/rewriter'
   co     = sources.map((name) -> fs.readFileSync name).join '\n'
   fmt    = (ms) -> " #{bold}#{ "   #{ms}".slice -4 }#{reset} ms"
   total  = 0
@@ -211,7 +210,7 @@ runTests = (CoffeeScript) ->
     log "failed #{failures.length} and #{message}", red
     for fail in failures
       {error, filename}  = fail
-      jsFilename         = filename.replace(/\.coffee$/,'.js')
+      jsFilename         = filename.replace(/\.bro$/,'.js')
       match              = error.stack?.match(new RegExp(fail.file+":(\\d+):(\\d+)"))
       match              = error.stack?.match(/on line (\d+):/) unless match
       [match, line, col] = match if match
@@ -224,7 +223,7 @@ runTests = (CoffeeScript) ->
 
   # Run every test in the `test` folder, recording failures.
   files = fs.readdirSync 'test'
-  for file in files when file.match /\.coffee$/i
+  for file in files when file.match /\.bro$/i
     currentFile = filename = path.join 'test', file
     code = fs.readFileSync filename
     try
@@ -239,7 +238,7 @@ task 'test', 'run the CoffeeScript language test suite', ->
 
 
 task 'test:browser', 'run the test suite against the merged browser script', ->
-  source = fs.readFileSync 'extras/coffee-script.js', 'utf-8'
+  source = fs.readFileSync 'extras/bro-script.js', 'utf-8'
   result = {}
   global.testingBrowser = yes
   (-> eval source).call result

@@ -49,7 +49,7 @@ eldest = if 25 > 21 then liz else marge
 
 decoration = medal_of_honor if war_hero
 
-go_to_sleep() unless coffee
+go_to_sleep() unless.bro
 
 # Returning early:
 race = ->

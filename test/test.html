@@ -3,7 +3,7 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
   <title>CoffeeScript Test Suite</title>
-  <script src="../extras/coffee-script.js"></script>
+  <script src="../extras/bro-script.js"></script>
   <style>
     body {
       margin: 30px;
@@ -21,7 +21,7 @@
   <h1>CoffeeScript Test Suite</h1>
   <pre id="stdout"></pre>
 
-  <script type="text/coffeescript">
+  <script type="text.broscript">
 
   stdout  = document.getElementById 'stdout'
   start   = new Date
@@ -72,7 +72,7 @@
     ok no
 
   run = (name) ->
-    CoffeeScript.load "#{name}.coffee", ->
+    CoffeeScript.load "#{name}.bro", ->
       say '\u2714 ' + name
       fin() if ++done is names.length
 

@@ -3,7 +3,7 @@ var fill;
 
 fill = function(container, liquid) {
   if (liquid == null) {
-    liquid = "coffee";
+    liquid = .bro";
   }
   return "Filling the " + container + " with " + liquid + "...";
 };

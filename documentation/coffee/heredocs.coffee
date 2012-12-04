@@ -1,6 +1,6 @@
 html = """
        <strong>
-         cup of coffeescript
+         cup of.broscript
        </strong>
        """
        

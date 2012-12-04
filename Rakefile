@@ -7,7 +7,7 @@ require 'json'
 desc "Build the documentation page"
 task :doc do
   source = 'documentation/index.html.erb'
-  child = fork { exec "bin/coffee -bcw -o documentation/js documentation/coffee/*.coffee" }
+  child = fork { exec "bin.bro -bcw -o documentation/js documentation.bro/*.bro" }
   at_exit { Process.kill("INT", child) }
   Signal.trap("INT") { exit }
   loop do
@@ -21,17 +21,17 @@ task :doc do
   end
 end
 
-desc "Build coffee-script-source gem"
+desc "Build bro-script-source gem"
 task :gem do
   require 'rubygems'
   require 'rubygems/package'
 
   gemspec = Gem::Specification.new do |s|
-    s.name      = 'coffee-script-source'
+    s.name      = 'bro-script-source'
     s.version   = JSON.parse(File.read('package.json'))["version"]
     s.date      = Time.now.strftime("%Y-%m-%d")
 
-    s.homepage    = "http://jashkenas.github.com/coffee-script/"
+    s.homepage    = "http://jashkenas.github.com/bro-script/"
     s.summary     = "The CoffeeScript Compiler"
     s.description = <<-EOS
       CoffeeScript is a little language that compiles into JavaScript.
@@ -42,25 +42,25 @@ task :gem do
     EOS
 
     s.files = [
-      'lib/coffee_script/coffee-script.js',
-      'lib/coffee_script/source.rb'
+      'lib.bro_script/bro-script.js',
+      'lib.bro_script/source.rb'
     ]
 
     s.authors           = ['Jeremy Ashkenas']
     s.email             = 'jashkenas@gmail.com'
-    s.rubyforge_project = 'coffee-script-source'
+    s.rubyforge_project = 'bro-script-source'
   end
 
-  file = File.open("coffee-script-source.gem", "w")
+  file = File.open("bro-script-source.gem", "w")
   Gem::Package.open(file, 'w') do |pkg|
     pkg.metadata = gemspec.to_yaml
 
-    path = "lib/coffee_script/source.rb"
+    path = "lib.bro_script/source.rb"
     contents = <<-ERUBY
 module CoffeeScript
   module Source
     def self.bundled_path
-      File.expand_path("../coffee-script.js", __FILE__)
+      File.expand_path("../bro-script.js", __FILE__)
     end
   end
 end
@@ -69,8 +69,8 @@ end
       tar_io.write(contents)
     end
 
-    contents = File.read("extras/coffee-script.js")
-    path = "lib/coffee_script/coffee-script.js"
+    contents = File.read("extras/bro-script.js")
+    path = "lib.bro_script/bro-script.js"
     pkg.add_file_simple(path, 0644, contents.size) do |tar_io|
       tar_io.write(contents)
     end

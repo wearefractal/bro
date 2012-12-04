@@ -5,10 +5,10 @@
   def code_for(file, executable=false, show_load=true)
     @counter += 1
     return '' unless File.exists?("documentation/js/#{file}.js")
-    cs = File.read("documentation/coffee/#{file}.coffee")
+    cs = File.read("documentation.bro/#{file}.bro")
     js = File.read("documentation/js/#{file}.js")
     js = js.sub(/^\/\/ generated.*?\n/i, '')
-    cshtml = Uv.parse(cs, 'xhtml', 'coffeescript', false, 'idle', false)
+    cshtml = Uv.parse(cs, 'xhtml', .broscript', false, 'idle', false)
     jshtml = Uv.parse(js, 'xhtml', 'javascript', false, 'idle', false)
     append = executable  == true ? '' : "alert(#{executable});"
     if executable and executable != true
@@ -29,7 +29,7 @@
 <head>
   <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
   <title>CoffeeScript</title>
-  <link rel="canonical" href="http://coffeescript.org" />
+  <link rel="canonical" href="http:/.broscript.org" />
   <link rel="stylesheet" type="text/css" href="documentation/css/docs.css" />
   <link rel="stylesheet" type="text/css" href="documentation/css/idle.css" />
   <link rel="shortcut icon" href="documentation/images/favicon.ico" />
@@ -66,7 +66,7 @@
         <a href="#strings">String Interpolation, Block Strings, and Block Comments</a>
         <a href="#regexes">Block Regular Expressions</a>
         <a href="#cake">Cake, and Cakefiles</a>
-        <a href="#scripts">"text/coffeescript" Script Tags</a>
+        <a href="#scripts">"text.broscript" Script Tags</a>
         <a href="#resources">Books, Screencasts, Examples and Resources</a>
         <a href="#changelog">Change Log</a>
       </div>
@@ -103,9 +103,9 @@
         <a href="documentation/docs/nodes.html">The Syntax Tree &mdash; src/nodes</a>
         <a href="documentation/docs/scope.html">Lexical Scope &mdash; src/scope</a>
         <a href="documentation/docs/helpers.html">Helpers &amp; Utility Functions &mdash; src/helpers</a>
-        <a href="documentation/docs/coffee-script.html">The CoffeeScript Module &mdash; src/coffee-script</a>
+        <a href="documentation/docs/bro-script.html">The CoffeeScript Module &mdash; src/bro-script</a>
         <a href="documentation/docs/cake.html">Cake &amp; Cakefiles &mdash; src/cake</a>
-        <a href="documentation/docs/command.html">"coffee" Command-Line Utility &mdash; src/command</a>
+        <a href="documentation/docs/command.html">.bro" Command-Line Utility &mdash; src/command</a>
         <a href="documentation/docs/optparse.html">Option Parsing &mdash; src/optparse</a>
         <a href="documentation/docs/repl.html">Interactive REPL &mdash; src/repl</a>
       </div>
@@ -136,7 +136,7 @@
 
     <p>
       <b>Latest Version:</b>
-      <a href="http://github.com/jashkenas/coffee-script/tarball/1.4.0">1.4.0</a>
+      <a href="http://github.com/jashkenas/bro-script/tarball/1.4.0">1.4.0</a>
     </p>
 
     <h2>
@@ -157,9 +157,9 @@
       The CoffeeScript compiler is itself
       <a href="documentation/docs/grammar.html">written in CoffeeScript</a>,
       using the <a href="http://jison.org">Jison parser generator</a>. The
-      command-line version of <tt>coffee</tt> is available as a
+      command-line version of <tt.bro</tt> is available as a
       <a href="http://nodejs.org/">Node.js</a> utility. The
-      <a href="extras/coffee-script.js">core compiler</a> however, does not
+      <a href="extras/bro-script.js">core compiler</a> however, does not
       depend on Node, and can be run in any JavaScript environment, or in the
       browser (see "Try CoffeeScript", above).
     </p>
@@ -171,7 +171,7 @@
     </p>
 
     <pre>
-npm install -g coffee-script</pre>
+npm install -g bro-script</pre>
 
     <p>
       (Leave off the <tt>-g</tt> if you don't wish to install globally.)
@@ -180,18 +180,18 @@ npm install -g coffee-script</pre>
     <p>
       If you'd prefer to install the latest <b>master</b> version of CoffeeScript, you
       can clone the CoffeeScript
-      <a href="http://github.com/jashkenas/coffee-script">source repository</a>
+      <a href="http://github.com/jashkenas/bro-script">source repository</a>
       from GitHub, or download
-      <a href="http://github.com/jashkenas/coffee-script/tarball/master">the source</a> directly.
+      <a href="http://github.com/jashkenas/bro-script/tarball/master">the source</a> directly.
       To install the lastest master CoffeeScript compiler with npm:
     </p>
 
 <pre>
-npm install -g http://github.com/jashkenas/coffee-script/tarball/master</pre>
+npm install -g http://github.com/jashkenas/bro-script/tarball/master</pre>
 
     <p>
       Or, if you want to install to <tt>/usr/local</tt>, and don't want to use 
-      npm to manage it, open the <tt>coffee-script</tt> directory and run:
+      npm to manage it, open the <tt>bro-script</tt> directory and run:
     </p>
 
   <pre>
@@ -203,9 +203,9 @@ sudo bin/cake install</pre>
     </h2>
 
     <p>
-      Once installed, you should have access to the <tt>coffee</tt> command,
-      which can execute scripts, compile <tt>.coffee</tt> files into <tt>.js</tt>,
-      and provide an interactive REPL. The <tt>coffee</tt> command takes the
+      Once installed, you should have access to the <tt.bro</tt> command,
+      which can execute scripts, compile <tt>.bro</tt> files into <tt>.js</tt>,
+      and provide an interactive REPL. The <tt.bro</tt> command takes the
       following options:
     </p>
 
@@ -213,7 +213,7 @@ sudo bin/cake install</pre>
       <tr>
         <td><code>-c, --compile</code></td>
         <td>
-          Compile a <tt>.coffee</tt> script into a <tt>.js</tt> JavaScript file
+          Compile a <tt>.bro</tt> script into a <tt>.js</tt> JavaScript file
           of the same name.
         </td>
       </tr>
@@ -221,7 +221,7 @@ sudo bin/cake install</pre>
         <td width="25%"><code>-i, --interactive</code></td>
         <td>
           Launch an interactive CoffeeScript session to try short snippets.
-          Identical to calling <tt>coffee</tt> with no arguments.
+          Identical to calling <tt.bro</tt> with no arguments.
         </td>
       </tr>
       <tr>
@@ -268,14 +268,14 @@ sudo bin/cake install</pre>
         <td>
           Pipe in CoffeeScript to STDIN and get back JavaScript over STDOUT.
           Good for use with processes written in other languages. An example:<br />
-          <tt>cat src/cake.coffee | coffee -sc</tt>
+          <tt>cat src/cake.bro |.bro -sc</tt>
         </td>
       </tr>
       <tr>
         <td><code>-e, --eval</code></td>
         <td>
           Compile and print a little snippet of CoffeeScript directly from the
-          command line. For example:<br /><tt>coffee -e "console.log num for num in [10..1]"</tt>
+          command line. For example:<br /><tt.bro -e "console.log num for num in [10..1]"</tt>
         </td>
       </tr>
       <tr>
@@ -330,29 +330,29 @@ Expressions
 
     <ul>
       <li>
-        Compile a directory tree of <tt>.coffee</tt> files in <tt>src</tt> into a parallel
+        Compile a directory tree of <tt>.bro</tt> files in <tt>src</tt> into a parallel
         tree of <tt>.js</tt> files in <tt>lib</tt>:<br />
-        <tt>coffee --compile --output lib/ src/</tt>
+        <tt.bro --compile --output lib/ src/</tt>
       </li>
       <li>
         Watch a file for changes, and recompile it every time the file is saved:<br />
-        <tt>coffee --watch --compile experimental.coffee</tt>
+        <tt.bro --watch --compile experimental.bro</tt>
       </li>
       <li>
         Concatenate a list of files into a single script:<br />
-        <tt>coffee --join project.js --compile src/*.coffee</tt>
+        <tt.bro --join project.js --compile src/*.bro</tt>
       </li>
       <li>
         Print out the compiled JS from a one-liner:<br />
-        <tt>coffee -bpe "alert i for i in [0..10]"</tt>
+        <tt.bro -bpe "alert i for i in [0..10]"</tt>
       </li>
       <li>
         All together now, watch and recompile an entire project as you work on it:<br />
-        <tt>coffee -o lib/ -cw src/</tt>
+        <tt.bro -o lib/ -cw src/</tt>
       </li>
       <li>
         Start the CoffeeScript REPL (<tt>Ctrl-D</tt> to exit, <tt>Ctrl-V</tt>for multi-line):<br />
-        <tt>coffee</tt>
+        <tt.bro</tt>
       </li>
     </ul>
 
@@ -921,15 +921,15 @@ Expressions
 
     <h2>
       <span id="scripts" class="bookmark"></span>
-      "text/coffeescript" Script Tags
+      "text.broscript" Script Tags
     </h2>
 
     <p>
       While it's not recommended for serious use, CoffeeScripts may be included
-      directly within the browser using <tt>&lt;script type="text/coffeescript"&gt;</tt>
+      directly within the browser using <tt>&lt;script type="text.broscript"&gt;</tt>
       tags. The source includes a compressed and minified version of the compiler
-      (<a href="extras/coffee-script.js">Download current version here, 39k when gzipped</a>)
-      as <tt>extras/coffee-script.js</tt>. Include this file on a page with
+      (<a href="extras/bro-script.js">Download current version here, 39k when gzipped</a>)
+      as <tt>extras/bro-script.js</tt>. Include this file on a page with
       inline CoffeeScript tags, and it will compile and evaluate them in order.
     </p>
 
@@ -959,7 +959,7 @@ Expressions
 
     <ul>
       <li>
-        <a href="http://arcturo.github.com/library/coffeescript/">The Little Book on CoffeeScript</a>
+        <a href="http://arcturo.github.com/library.broscript/">The Little Book on CoffeeScript</a>
         is a brief 5-chapter introduction to CoffeeScript, written with great
         clarity and precision by
         <a href="http://alexmaccaw.co.uk/">Alex MacCaw</a>.
@@ -973,7 +973,7 @@ Expressions
         <a href="https://github.com/autotelicum">E. Hoigaard</a>.
       </li>
       <li>
-        <a href="http://pragprog.com/book/tbcoffee/coffeescript">CoffeeScript: Accelerated JavaScript Development</a>
+        <a href="http://pragprog.com/book/t.bro.broscript">CoffeeScript: Accelerated JavaScript Development</a>
         is <a href="http://trevorburnham.com/">Trevor Burnham</a>'s thorough
         introduction to the language. By the end of the book, you'll have built
         a fast-paced multiplayer word game, writing both the client-side and Node.js
@@ -987,18 +987,18 @@ Expressions
     
     <ul>
       <li>
-        <a href="http://coffeescript.codeschool.com">A Sip of CoffeeScript</a> is a <a href="http://www.codeschool.com">Code School Course</a>
+        <a href="http:/.broscript.codeschool.com">A Sip of CoffeeScript</a> is a <a href="http://www.codeschool.com">Code School Course</a>
         which combines 6 screencasts with in-browser coding to make learning fun.  The first level is free to try out.
       </li>
       <li>
-        <a href="http://peepcode.com/products/coffeescript">Meet CoffeeScript</a>
+        <a href="http://peepcode.com/products.broscript">Meet CoffeeScript</a>
         is a 75-minute long screencast by <a href="http://peepcode.com/">PeepCode</a>.
         Highly memorable for its animations which demonstrate transforming CoffeeScript
         into the equivalent JS.
       </li>
       <li>
         If you're looking for less of a time commitment, RailsCasts'
-        <a href="http://railscasts.com/episodes/267-coffeescript-basics">CoffeeScript Basics</a>
+        <a href="http://railscasts.com/episodes/267.broscript-basics">CoffeeScript Basics</a>
         should have you covered, hitting all of the important notes about CoffeeScript
         in 11 minutes.
       </li>
@@ -1009,7 +1009,7 @@ Expressions
     </h2>
     
     <p>
-      The <a href="https://github.com/languages/coffeescript">best list of 
+      The <a href="https://github.com/languages.broscript">best list of 
       open-source CoffeeScript examples</a> can be found on GitHub. But just
       to throw out few more:
     </p>
@@ -1029,7 +1029,7 @@ Expressions
         and Protocol Buffers.
       </li>
       <li>
-        <b>technoweenie</b>'s <a href="https://github.com/technoweenie/coffee-resque">Coffee-Resque</a>,
+        <b>technoweenie</b>'s <a href="https://github.com/technoweenie.bro-resque">Coffee-Resque</a>,
         a port of <a href="https://github.com/defunkt/resque">Resque</a> for Node.js.
       </li>
       <li>
@@ -1037,7 +1037,7 @@ Expressions
         a headless, full-stack, faux-browser testing library for Node.js.
       </li>
       <li>
-        <b>jashkenas</b>' <a href="documentation/docs/underscore.html">Underscore.coffee</a>, a port
+        <b>jashkenas</b>' <a href="documentation/docs/underscore.html">Underscore.bro</a>, a port
         of the <a href="http://documentcloud.github.com/underscore/">Underscore.js</a>
         library of helper functions.
       </li>
@@ -1057,8 +1057,8 @@ Expressions
 
     <ul>
       <li>
-        <a href="http://github.com/jashkenas/coffee-script/">Source Code</a><br />
-        Use <tt>bin/coffee</tt> to test your changes,<br />
+        <a href="http://github.com/jashkenas/bro-script/">Source Code</a><br />
+        Use <tt>bin.bro</tt> to test your changes,<br />
         <tt>bin/cake test</tt> to run the test suite,<br />
         <tt>bin/cake build</tt> to rebuild the CoffeeScript compiler, and <br />
         <tt>bin/cake build:parser</tt> to regenerate the Jison parser if you're
@@ -1070,27 +1070,27 @@ Expressions
         they pass, there's a good chance you've made a successful change.
       </li>
       <li>
-        <a href="http://github.com/jashkenas/coffee-script/issues">CoffeeScript Issues</a><br />
+        <a href="http://github.com/jashkenas/bro-script/issues">CoffeeScript Issues</a><br />
         Bug reports, feature proposals, and ideas for changes to the language belong here.
       </li>
       <li>
-        <a href="https://groups.google.com/forum/#!forum/coffeescript">CoffeeScript Google Group</a><br />
+        <a href="https://groups.google.com/forum/#!forum.broscript">CoffeeScript Google Group</a><br />
         If you'd like to ask a question, the mailing list is a good place to get help.
       </li>
       <li>
-        <a href="http://github.com/jashkenas/coffee-script/wiki">The CoffeeScript Wiki</a><br />
+        <a href="http://github.com/jashkenas/bro-script/wiki">The CoffeeScript Wiki</a><br />
         If you've ever learned a neat CoffeeScript tip or trick, or ran into a gotcha &mdash; share it on the wiki.
         The wiki also serves as a directory of handy
-        <a href="http://github.com/jashkenas/coffee-script/wiki/Text-editor-plugins">text editor extensions</a>,
-        <a href="http://github.com/jashkenas/coffee-script/wiki/Web-framework-plugins">web framework plugins</a>,
-        and general <a href="http://github.com/jashkenas/coffee-script/wiki/Build-tools">CoffeeScript build tools</a>.
+        <a href="http://github.com/jashkenas/bro-script/wiki/Text-editor-plugins">text editor extensions</a>,
+        <a href="http://github.com/jashkenas/bro-script/wiki/Web-framework-plugins">web framework plugins</a>,
+        and general <a href="http://github.com/jashkenas/bro-script/wiki/Build-tools">CoffeeScript build tools</a>.
       </li>
       <li>
-        <a href="http://github.com/jashkenas/coffee-script/wiki/FAQ">The FAQ</a><br />
+        <a href="http://github.com/jashkenas/bro-script/wiki/FAQ">The FAQ</a><br />
         Perhaps your CoffeeScript-related question has been asked before. Check the FAQ first.
       </li>
       <li>
-        <a href="https://github.com/jashkenas/coffee-script/downloads">High-Rez Logo</a><br />
+        <a href="https://github.com/jashkenas/bro-script/downloads">High-Rez Logo</a><br />
         The CoffeeScript logo is available in Illustrator, EPS and PSD formats, for use
         in presentations.
       </li>
@@ -1103,12 +1103,12 @@ Expressions
 
     <p>
       Quick help and advice can usually be found in the CoffeeScript IRC room.
-      Join <tt>#coffeescript</tt> on <tt>irc.freenode.net</tt>, or click the
+      Join <tt>.broscript</tt> on <tt>irc.freenode.net</tt>, or click the
       button below to open a webchat session on this page.
     </p>
 
     <p>
-      <button id="open_webchat">click to open #coffeescript</button>
+      <button id="open_webchat">click to open .broscript</button>
     </p>
 
     <h2>
@@ -1118,7 +1118,7 @@ Expressions
     
     <p>
       <b class="header" style="margin-top: 20px;">
-        <a href="https://github.com/jashkenas/coffee-script/compare/1.3.3...1.4.0">1.4.0</a>
+        <a href="https://github.com/jashkenas/bro-script/compare/1.3.3...1.4.0">1.4.0</a>
         <span class="timestamp"> &ndash; <small>Oct 23, 2012</small></span>
       </b>
       <ul>
@@ -1139,14 +1139,14 @@ Expressions
     
     <p>
       <b class="header" style="margin-top: 20px;">
-        <a href="https://github.com/jashkenas/coffee-script/compare/1.3.1...1.3.3">1.3.3</a>
+        <a href="https://github.com/jashkenas/bro-script/compare/1.3.1...1.3.3">1.3.3</a>
         <span class="timestamp"> &ndash; <small>May 15, 2012</small></span>
       </b>
       <ul>
         <li>
           Due to the new semantics of JavaScript's strict mode, CoffeeScript no
           longer guarantees that constructor functions have names in all runtimes.
-          See <a href="https://github.com/jashkenas/coffee-script/issues/2052">#2052</a> 
+          See <a href="https://github.com/jashkenas/bro-script/issues/2052">#2052</a> 
           for discussion.
         </li>
         <li>
@@ -1168,7 +1168,7 @@ Expressions
     
     <p>
       <b class="header" style="margin-top: 20px;">
-        <a href="https://github.com/jashkenas/coffee-script/compare/1.2.0...1.3.1">1.3.1</a>
+        <a href="https://github.com/jashkenas/bro-script/compare/1.2.0...1.3.1">1.3.1</a>
         <span class="timestamp"> &ndash; <small>April 10, 2012</small></span>
       </b>
       <ul>
@@ -1179,7 +1179,7 @@ Expressions
           a function definition, deleting naked variables, setting the value of
           <tt>eval</tt> or <tt>arguments</tt>, and more.
           See a full discussion at 
-          <a href="https://github.com/jashkenas/coffee-script/issues/1547">#1547</a>.
+          <a href="https://github.com/jashkenas/bro-script/issues/1547">#1547</a>.
         </li>
         <li>
           The REPL now has a handy new multi-line mode for entering large
@@ -1208,7 +1208,7 @@ Expressions
           effectively creating a shallow copy of the list.
         </li>
         <li>
-          Additional tweaks and improvments to <tt>coffee --watch</tt> under 
+          Additional tweaks and improvments to <tt.bro --watch</tt> under 
           Node's "new" file watching API. Watch will now beep by default 
           if you introduce a syntax error into a watched script. We also now
           ignore hidden directories by default when watching recursively.
@@ -1218,12 +1218,12 @@ Expressions
     
     <p>
       <b class="header" style="margin-top: 20px;">
-        <a href="https://github.com/jashkenas/coffee-script/compare/1.1.3...1.2.0">1.2.0</a>
+        <a href="https://github.com/jashkenas/bro-script/compare/1.1.3...1.2.0">1.2.0</a>
         <span class="timestamp"> &ndash; <small>Dec. 18, 2011</small></span>
       </b>
       <ul>
         <li>
-          Multiple improvements to <tt>coffee --watch</tt> and <tt>--join</tt>.
+          Multiple improvements to <tt.bro --watch</tt> and <tt>--join</tt>.
           You may now use both together, as well as add and remove
           files and directories within a <tt>--watch</tt>'d folder.
         </li>
@@ -1245,7 +1245,7 @@ Expressions
     
     <p>
       <b class="header" style="margin-top: 20px;">
-        <a href="https://github.com/jashkenas/coffee-script/compare/1.1.2...1.1.3">1.1.3</a>
+        <a href="https://github.com/jashkenas/bro-script/compare/1.1.2...1.1.3">1.1.3</a>
         <span class="timestamp"> &ndash; <small>Nov. 8, 2011</small></span>
       </b>
       <ul>
@@ -1266,14 +1266,14 @@ Expressions
           The CoffeeScript module has been nested under a subdirectory to make 
           it easier to <tt>require</tt> individual components separately, without
           having to use <b>npm</b>. For example, after adding the CoffeeScript
-          folder to your path: <tt>require('coffee-script/lexer')</tt>
+          folder to your path: <tt>require('bro-script/lexer')</tt>
         </li>
         <li>
           There's a new "link" feature in Try CoffeeScript on this webpage. Use
           it to get a shareable permalink for your example script.
         </li>
         <li>
-          The <tt>coffee --watch</tt> feature now only works on Node.js 0.6.0 
+          The <tt.bro --watch</tt> feature now only works on Node.js 0.6.0 
           and higher, but now also works properly on Windows.
         </li>
         <li>
@@ -1288,7 +1288,7 @@ Expressions
 
     <p>
       <b class="header" style="margin-top: 20px;">
-        <a href="https://github.com/jashkenas/coffee-script/compare/1.1.1...1.1.2">1.1.2</a>
+        <a href="https://github.com/jashkenas/bro-script/compare/1.1.1...1.1.2">1.1.2</a>
         <span class="timestamp"> &ndash; <small>August 4, 2011</small></span>
       </b>
       Fixes for block comment formatting, <tt>?=</tt> compilation, implicit calls
@@ -1312,13 +1312,13 @@ Expressions
       <b class="header" style="margin-top: 20px;">1.1.0
         <span class="timestamp"> &ndash; <small>May 1, 2011</small></span>
       </b>
-      When running via the <tt>coffee</tt> executable, <tt>process.argv</tt> and
-      friends now report <tt>coffee</tt> instead of <tt>node</tt>.
+      When running via the <tt.bro</tt> executable, <tt>process.argv</tt> and
+      friends now report <tt.bro</tt> instead of <tt>node</tt>.
       Better compatibility with <b>Node.js 0.4.x</b> module lookup changes.
       The output in the REPL is now colorized, like Node's is.
       Giving your concatenated CoffeeScripts a name when using <tt>--join</tt> is now mandatory.
       Fix for lexing compound division <tt>/=</tt> as a regex accidentally.
-      All <tt>text/coffeescript</tt> tags should now execute in the order they're included.
+      All <tt>text.broscript</tt> tags should now execute in the order they're included.
       Fixed an issue with extended subclasses using external constructor functions.
       Fixed an edge-case infinite loop in <tt>addImplicitParentheses</tt>.
       Fixed exponential slowdown with long chains of function calls.
@@ -1412,7 +1412,7 @@ Expressions
       Specifying the start and end of a range literal is now optional, eg. <tt>array[3..]</tt>.
       You can now say <tt>a not instanceof b</tt>.
       Fixed important bugs with nested significant and non-significant indentation (Issue #637).
-      Added a <tt>--require</tt> flag that allows you to hook into the <tt>coffee</tt> command.
+      Added a <tt>--require</tt> flag that allows you to hook into the <tt.bro</tt> command.
       Added a custom <tt>jsl.conf</tt> file for our preferred JavaScriptLint setup.
       Sped up Jison grammar compilation time by flattening rules for operations.
       Block comments can now be used with JavaScript-minifier-friendly syntax.
@@ -1462,7 +1462,7 @@ Expressions
       <b class="header" style="margin-top: 20px;">0.7.2
         <span class="timestamp"> &ndash; <small>Jul 12, 2010</small></span>
       </b>
-      Quick bugfix (right after 0.7.1) for a problem that prevented <tt>coffee</tt>
+      Quick bugfix (right after 0.7.1) for a problem that prevented <tt.bro</tt>
       command-line options from being parsed in some circumstances.
     </p>
 
@@ -1472,7 +1472,7 @@ Expressions
       </b>
       Block-style comments are now passed through and printed as JavaScript block
       comments -- making them useful for licenses and copyright headers. Better
-      support for running coffee scripts standalone via hashbangs.
+      support for running.bro scripts standalone via hashbangs.
       Improved syntax errors for tokens that are not in the grammar.
     </p>
 
@@ -1484,7 +1484,7 @@ Expressions
       Reserved words are now allowed as object keys, and will be quoted for you.
       Range comprehensions now generate cleaner code, but you have to specify <tt>by -1</tt>
       if you'd like to iterate downward. Reporting of syntax errors is greatly
-      improved from the previous release. Running <tt>coffee</tt> with no arguments
+      improved from the previous release. Running <tt.bro</tt> with no arguments
       now launches the REPL, with Readline support. The <tt>&lt;-</tt> bind operator
       has been removed from CoffeeScript. The <tt>loop</tt> keyword was added,
       which is equivalent to a <tt>while true</tt> loop. Comprehensions that contain
@@ -1499,7 +1499,7 @@ Expressions
       <b class="header" style="margin-top: 20px;">0.6.2
         <span class="timestamp"> &ndash; <small>May 15, 2010</small></span>
       </b>
-      The <tt>coffee</tt> command will now preserve directory structure when
+      The <tt.bro</tt> command will now preserve directory structure when
       compiling a directory full of scripts. Fixed two omissions that were preventing
       the CoffeeScript compiler from running live within Internet Explorer.
       There's now a syntax for block comments, similar in spirit to CoffeeScript's heredocs.
@@ -1537,8 +1537,8 @@ Expressions
       strings. Added the <tt>&lt;-</tt> bind operator.
       Allowing assignment to half-expressions instead of special <tt>||=</tt>-style
       operators. The arguments object is no longer automatically converted into
-      an array. After requiring <tt>coffee-script</tt>, Node.js can now directly
-      load <tt>.coffee</tt> files, thanks to <b>registerExtension</b>. Multiple
+      an array. After requiring <tt>bro-script</tt>, Node.js can now directly
+      load <tt>.bro</tt> files, thanks to <b>registerExtension</b>. Multiple
       splats can now be used in function calls, arrays, and pattern matching.
     </p>
 
@@ -1568,8 +1568,8 @@ Expressions
       </b>
       CoffeeScript now has a syntax for defining classes. Many of the core
       components (Nodes, Lexer, Rewriter, Scope, Optparse) are using them.
-      Cakefiles can use <tt>optparse.coffee</tt> to define options for tasks.
-      <tt>--run</tt> is now the default flag for the <tt>coffee</tt> command,
+      Cakefiles can use <tt>optparse.bro</tt> to define options for tasks.
+      <tt>--run</tt> is now the default flag for the <tt.bro</tt> command,
       use <tt>--compile</tt> to save JavaScripts. Bugfix for an ambiguity between
       RegExp literals and chained divisions.
     </p>
@@ -1579,9 +1579,9 @@ Expressions
         <span class="timestamp"> &ndash; <small>Feb 25, 2010</small></span>
       </b>
       Added a compressed version of the compiler for inclusion in web pages as
-      <br  /><tt>extras/coffee-script.js</tt>. It'll automatically run any script tags
-      with type <tt>text/coffeescript</tt> for you. Added a <tt>--stdio</tt> option
-      to the <tt>coffee</tt> command, for piped-in compiles.
+      <br  /><tt>extras/bro-script.js</tt>. It'll automatically run any script tags
+      with type <tt>text.broscript</tt> for you. Added a <tt>--stdio</tt> option
+      to the <tt.bro</tt> command, for piped-in compiles.
     </p>
 
 
@@ -1715,7 +1715,7 @@ Expressions
       <b class="header" style="margin-top: 20px;">0.1.6
         <span class="timestamp"> &ndash; <small>Dec 27, 2009</small></span>
       </b>
-      Bugfix for running <tt>coffee --interactive</tt> and <tt>--run</tt>
+      Bugfix for running <tt.bro --interactive</tt> and <tt>--run</tt>
       from outside of the CoffeeScript directory. Bugfix for nested
       function/if-statements.
     </p>
@@ -1728,14 +1728,14 @@ Expressions
       ranges to specify the start and end. JavaScript variable declaration is
       now pushed up to the top of the scope, making all assignment statements into
       expressions. You can use <tt>\</tt> to escape newlines.
-      The <tt>coffee-script</tt> command is now called <tt>coffee</tt>.
+      The <tt>bro-script</tt> command is now called <tt.bro</tt>.
     </p>
 
     <p>
       <b class="header" style="margin-top: 20px;">0.1.4
         <span class="timestamp"> &ndash; <small>Dec 25, 2009</small></span>
       </b>
-      The official CoffeeScript extension is now <tt>.coffee</tt> instead of
+      The official CoffeeScript extension is now <tt>.bro</tt> instead of
       <tt>.cs</tt>, which properly belongs to
       <a href="http://en.wikipedia.org/wiki/C_Sharp_(programming_language)">C#</a>.
       Due to popular demand, you can now also use <tt>=</tt> to assign. Unlike
@@ -1749,7 +1749,7 @@ Expressions
       <b class="header" style="margin-top: 20px;">0.1.3
         <span class="timestamp"> &ndash; <small>Dec 25, 2009</small></span>
       </b>
-      The <tt>coffee</tt> command now includes <tt>--interactive</tt>,
+      The <tt.bro</tt> command now includes <tt>--interactive</tt>,
       which launches an interactive CoffeeScript session, and <tt>--run</tt>,
       which directly compiles and executes a script. Both options depend on a
       working installation of Narwhal.
@@ -1791,7 +1791,7 @@ Expressions
 
   </div>
 
-  <script type="text/coffeescript">
+  <script type="text.broscript">
     sourceFragment = "try:"
 
     # Set up the compilation function, to run when you stop typing.
@@ -1822,8 +1822,8 @@ Expressions
       catch error then alert error
 
     # Load the console with a string of CoffeeScript.
-    window.loadConsole = (coffee) ->
-      $('#repl_source').val coffee
+    window.loadConsole = .bro) ->
+      $('#repl_source').val.bro
       compileSource()
       $('.navigation.try').addClass('active')
       false
@@ -1856,7 +1856,7 @@ Expressions
         closeMenus()
 
     $('#open_webchat').click ->
-      $(this).replaceWith $('<iframe src="http://webchat.freenode.net/?channels=coffeescript" width="625" height="400"></iframe>')
+      $(this).replaceWith $('<iframe src="http://webchat.freenode.net/?channels.broscript" width="625" height="400"></iframe>')
 
     $("#repl_permalink").click (e) ->
         window.location = $(this).attr("href")
@@ -1873,7 +1873,7 @@ Expressions
   </script>
 
   <script src="documentation/vendor/jquery-1.6.4.js"></script>
-  <script src="extras/coffee-script.js"></script>
+  <script src="extras/bro-script.js"></script>
 
 </body>
 </html>

@@ -1,6 +1,6 @@
 # Override exported methods for non-Node.js engines.
 
-CoffeeScript = require './coffee-script'
+CoffeeScript = require './bro-script'
 CoffeeScript.require = require
 
 # Use standard JavaScript `eval` to eval code.
@@ -34,16 +34,16 @@ CoffeeScript.load = (url, callback) ->
   xhr.send null
 
 # Activate CoffeeScript in the browser by having it compile and evaluate
-# all script tags with a content-type of `text/coffeescript`.
+# all script tags with a content-type of `text.broscript`.
 # This happens on page load.
 runScripts = ->
   scripts = document.getElementsByTagName 'script'
-  coffees = (s for s in scripts when s.type is 'text/coffeescript')
+  bros = (s for s in scripts when s.type is 'text.broscript')
   index = 0
-  length = coffees.length
+  length = bros.length
   do execute = ->
-    script = coffees[index++]
-    if script?.type is 'text/coffeescript'
+    script = bros[index++]
+    if script?.type is 'text.broscript'
       if script.src
         CoffeeScript.load script.src, execute
       else

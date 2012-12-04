@@ -1,32 +1,31 @@
 {
-  "name":         "coffee-script",
-  "description":  "Unfancy JavaScript",
-  "keywords":     ["javascript", "language", "coffeescript", "compiler"],
-  "author":       "Jeremy Ashkenas",
-  "version":      "1.4.0",
+  "name":         "bro",
+  "description":  "Do you even lift?",
+  "keywords":     ["javascript", "language", "brocript", "compiler"],
+  "author":       "wearefractal",
+  "version":      "0.0.2",
   "licenses":     [{
     "type":       "MIT",
-    "url":        "https://raw.github.com/jashkenas/coffee-script/master/LICENSE"
+    "url":        "https://raw.github.com/wearefractal/bro/master/LICENSE"
   }],
   "engines":      {
     "node":       ">=0.4.0"
   },
   "directories" : {
-    "lib" : "./lib/coffee-script"
+    "lib" : "./lib/bro-script"
   },
-  "main" : "./lib/coffee-script/coffee-script",
+  "main" : "./lib/bro-script/bro-script",
   "bin":          {
-    "coffee":     "./bin/coffee",
-    "cake":       "./bin/cake"
+    "bro":     "./bin.bro",
   },
   "scripts": {
     "test": "node ./bin/cake test"
   },
-  "homepage":     "http://coffeescript.org",
-  "bugs":         "https://github.com/jashkenas/coffee-script/issues",
+  "homepage":     "http://broscript.org",
+  "bugs":         "https://github.com/wearefractal/bro/issues",
   "repository":   {
     "type": "git",
-    "url": "git://github.com/jashkenas/coffee-script.git"
+    "url": "git://github.com/wearefractal/bro.git"
   },
   "devDependencies": {
     "uglify-js":  "~2.2",

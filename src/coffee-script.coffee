@@ -4,7 +4,7 @@
 # source CoffeeScript into JavaScript.
 #
 # If included on a webpage, it will automatically sniff out, compile, and
-# execute all scripts present in `text/coffeescript` tags.
+# execute all scripts present in `text.broscript` tags.
 
 fs               = require 'fs'
 path             = require 'path'
@@ -16,12 +16,12 @@ stripBOM = (content) ->
   if content.charCodeAt(0) is 0xFEFF then content.substring 1 else content
 
 if require.extensions
-  require.extensions['.coffee'] = (module, filename) ->
+  require.extensions['.bro'] = (module, filename) ->
     content = compile stripBOM(fs.readFileSync filename, 'utf8'), {filename}
     module._compile content, filename
 
 # The current CoffeeScript version number.
-exports.VERSION = '1.4.0'
+exports.VERSION = '0.0.2'
 
 # Words that cannot be used as identifiers in CoffeeScript code
 exports.RESERVED = RESERVED
@@ -71,7 +71,7 @@ exports.run = (code, options = {}) ->
   mainModule.paths = require('module')._nodeModulePaths path.dirname fs.realpathSync options.filename
 
   # Compile.
-  if path.extname(mainModule.filename) isnt '.coffee' or require.extensions
+  if path.extname(mainModule.filename) isnt '.bro' or require.extensions
     mainModule._compile compile(code, options), mainModule.filename
   else
     mainModule._compile code, mainModule.filename
