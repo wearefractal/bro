@@ -3,7 +3,7 @@
   "description":  "Do you even lift?",
   "keywords":     ["javascript", "language", "brocript", "compiler"],
   "author":       "wearefractal",
-  "version":      "0.0.2",
+  "version":      "0.0.3",
   "licenses":     [{
     "type":       "MIT",
     "url":        "https://raw.github.com/wearefractal/bro/master/LICENSE"
