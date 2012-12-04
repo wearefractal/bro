@@ -16,7 +16,7 @@
   },
   "main" : "./lib/bro-script/bro-script",
   "bin":          {
-    "bro":     "./bin.bro",
+    "bro":     "./bin.bro"
   },
   "scripts": {
     "test": "node ./bin/cake test"
